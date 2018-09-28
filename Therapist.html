@@ -1,0 +1,32 @@
+<!DOCTYPE HTML> <html>
+<head>
+<style>
+p{
+line-height: 50%;
+}
+</style>
+</head>
+<body onload="initialize()">
+<h1>Free online therapy</h1>
+<img src="freud2.jpg" alt="Freud">
+<div id="conversation"></div>
+<script> 
+var therapySession;
+const genericResponses = [ "Aham.",
+"Keep talking",
+"Why do you say that?", "This is very interesting.", "Fascinating...",
+"Keep talking."];
+function initialize() {
+therapySession = "<p> I am Freud, your psychotherapist. Let's look into your traumas and emotions.</p>"; conversation.innerHTML = therapySession;
+}
+function submitLine() {
+var patientLine = textbox.value;
+therapySession += "<p> <em>" + patientLine + "</em> </p>";
+var therapistLine = randomElement(genericResponses); therapySession += "<p>" + therapistLine + "</p>";
+conversation.innerHTML = therapySession; }
+function randomElement(myArray) {
+var index = Math.floor(Math.random() * myArray.length); return myArray[index];
+}
+</script>
+<p>Write here: <input id="textbox" size="150"/></p> <p><button onclick="submitLine()">Submit</button></p>
+</body> </html>
