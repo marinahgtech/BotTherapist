@@ -16,17 +16,31 @@ const genericResponses = [ "Aham.",
 "Keep talking",
 "Why do you say that?", "This is very interesting.", "Fascinating...",
 "Keep talking."];
+const questionResponses = [
+"Why do you ask that?",
+"What do you think?",
+"That's an interesting question. How would you answer it?",
+"How long have you wanted to know that?", 
+"That depends on who you ask.",
+"What would your mother say?"];
+const exclamationResponses = ["Please calm down", "Relax"]
 function initialize() {
-therapySession = "<p> I am Freud, your psychotherapist. Let's look into your traumas and emotions.</p>"; conversation.innerHTML = therapySession;
+therapySession = "<p> I am Freud, your therapist. Let's look into your traumas and emotions. What is your name?</p>"; conversation.innerHTML = therapySession;
 }
 function submitLine() {
 var patientLine = textbox.value;
 therapySession += "<p> <em>" + patientLine + "</em> </p>";
-var therapistLine = randomElement(genericResponses); therapySession += "<p>" + therapistLine + "</p>";
+var therapistLine; if (lastChar(patientLine) == "?") {
+therapistLine = randomElement(questionResponses); } else if (lastChar(patientLine) == "!") {
+therapistLine = randomElement(exclamationResponses); } else {
+therapistLine = randomElement(genericResponses); } therapySession += "<p>" + therapistLine + "</p>";
 conversation.innerHTML = therapySession; }
 function randomElement(myArray) {
 var index = Math.floor(Math.random() * myArray.length); return myArray[index];
-}
+};
+function lastChar(myString) {
+return myString.substring(myString.length - 1);
+};
 </script>
 <p>Write here: <input id="textbox" size="150"/></p> <p><button onclick="submitLine()">Submit</button></p>
 </body> </html>
